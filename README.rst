@@ -24,6 +24,11 @@ Requirements:
 - django.contrib.messages
 - `django-picklefield`_
 
+Actually django-options on pypi is already taken, but you can install::
+
+    $ pip install git+git://github.com/joke2k/django-options.git#egg=django-options
+
+
 Add django_options before 'django.contrib.admin' to extends `admin/base_site.html`
 ::
 

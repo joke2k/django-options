@@ -1,5 +1,3 @@
 include README.rst
-include NEWS.rst
 include LICENSE
 include runtests.py
-recursive-include *.py *.rst
