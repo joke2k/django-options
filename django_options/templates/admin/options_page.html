@@ -1,0 +1,126 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static admin_modify %}
+{% load url from future %}
+{% load admin_urls %}
+{% load options_admin %}
+
+
+{% block extrastyle %}
+    {{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
+    {% url 'admin:jsi18n' as jsi18nurl %}
+    <script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+    {{ media }}
+    <style type="text/css">
+      #content > h1 > small { font-size: 10px; color: #cdcdcd;}
+    </style>
+{% endblock %}
+
+{% block bodyclass %}change-form{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block breadcrumbs %}
+    <div id="options-pages-navbar" class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+        {% for option_page in current_page.parents reversed %}
+            &rsaquo; <a href="{% url 'admin:options-page' page_code=option_page.get_code %}">{{ option_page.title }}</a>
+        {% endfor %}
+        &rsaquo; <strong>{{ current_page.title }}</strong>
+    </div>
+{% endblock %}
+
+{% block content %}
+    {% block content-header %}
+    <h1>{{ current_page.parent.title|default:current_page.title }}
+    {% if current_page.description %}<small>{{ current_page.description }}</small>{% endif %}
+    </h1>
+    {% endblock %}
+
+    <div id="content-main">
+
+      {% block content-body %}{% endblock %}
+
+      {% for section in sections %}
+      <form action="." method="post"{% if section.form.is_multipart %} enctype="multipart/form-data"{% endif %}>{% csrf_token %}
+          <div>
+              {% if section.form.non_field_errors %}
+                  <p class="errornote">
+                      {% blocktrans count counter=section.form.non_field_errors|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+                  </p>
+                  {{ section.form.non_field_errors }}
+              {% endif %}
+              {% for fieldset in section %}
+              {% include 'admin/includes/fieldset.html' %}
+              {% endfor %}
+              {# Include the hidden fields #}
+              {% for hidden in section.form.hidden_fields %}
+                  {{ hidden }}
+              {% endfor %}
+
+              <div class="submit-row">
+                  <input type="submit" value="{% trans 'Save' %}" class="default" name="_save"/>
+              </div>
+          </div>
+
+      </form><hr>{% endfor %}
+    </div>
+    <div id="content-related">
+
+        {% block object-tools %}
+            <ul class="object-tools">
+                {% block object-tools-items %}
+                    <li><a href="history/" class="historylink">{% trans "History" %}</a></li>
+                    <li><a href="{% url 'admin:django_options_option_changelist' %}" class="optionslink">{% trans "Options" %}</a></li>
+                {% endblock %}
+            </ul>
+        {% endblock %}
+
+        <div class="module" id="options-subpages-module">
+            <h2>{% trans 'Admin pages' %}</h2>
+
+            {% options_pages as options_page_list %}
+
+            {% for main_page in options_page_list %}
+              <h3><a href="{% url 'admin:options-page' page_code=main_page.code %}"
+                      {% if main_page.code == current_page.get_code or main_page in current_page.parents %} style="text-decoration: underline"{% endif %}>
+                  {{ main_page.title|default:main_page.code|title }}
+              </a></h3>
+              {% if main_page.children %}<ul>
+              {% for sub_page in main_page.children %}
+                  {% include 'admin/recursive_menu.html' with page=sub_page current_page=current_page only %}
+              {% endfor %}
+              </ul>{% endif %}
+            {% endfor %}
+
+        </div>
+
+        <div class="module" id="recent-actions-module">
+            <h2>{% trans 'Recent Actions' %}</h2>
+            {% get_admin_log 10 user=user page=current_page as admin_log %}
+            {% if not admin_log %}
+                <p>{% trans 'None available' %}</p>
+            {% else %}
+                <ul class="actionlist">
+                    {% for entry in admin_log %}
+                        <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
+                            {% if entry.is_deletion or not entry.get_admin_url %}
+                                {{ entry.object_repr|sub_pages_only:current_page }}
+                            {% else %}
+                                <a href="../../../{{ entry.get_admin_url }}">{{ entry.object_repr|sub_pages_only:current_page }}</a>
+                            {% endif %}
+                            <br/>
+                            {% if entry.content_type %}
+                                <span class="mini quiet">{% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %}</span>
+                            {% else %}
+                                <span class="mini quiet">{% trans 'Unknown content' %}</span>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+    <br class="clear" />
+{% endblock %}

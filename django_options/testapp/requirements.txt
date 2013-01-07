@@ -1,0 +1,4 @@
+django
+django-picklefield
+fake-factory>=0.2
+django-faker

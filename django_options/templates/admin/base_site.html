@@ -1,0 +1,33 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+{% load url from future %}
+{% load options %}
+{% load options_admin %}
+
+
+{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
+
+{% block extrahead %}
+    <style type="text/css">
+      .nav-global { padding: 0 10px 4px 10px; }
+    </style>
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name">{% trans 'Django administration' %}</h1>
+{% endblock %}
+
+{% block nav-global %}
+
+    {% options_pages as page_list %}{% if page_list %}
+
+    <div id="options-pages-navbar" class="nav-global">
+        {% trans 'Options pages' %} :
+        {% for option_page in page_list %}
+            <a href="{% url 'admin:options-page' page_code=option_page.get_code %}">{{ option_page.title }}</a>
+            {% if not forloop.last %}&dash;{% endif %}
+        {% endfor %}
+    </div>
+
+    {% endif %}
+{% endblock %}

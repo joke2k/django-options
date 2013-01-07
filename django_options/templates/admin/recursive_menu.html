@@ -1,0 +1,23 @@
+{% load options_admin %}
+{% load url from future %}
+
+
+<li>
+  <a href="{% url 'admin:options-page' page_code=page.get_code %}"
+          {% if page.get_code == current_page.get_code or page in current_page.parents %} style="text-decoration: underline"{% endif %}
+          >{{ page.title|default:page.get_code|title }}</a>
+
+  {% if page.children %}
+
+  <ul>
+      {% for sub_page in page.children %}
+
+          {% with template_name="admin/recursive_menu.html" %}
+              {% include template_name with page=sub_page current_page=current_page only %}
+          {% endwith %}
+
+      {% endfor %}
+  </ul>
+
+  {% endif %}
+</li>

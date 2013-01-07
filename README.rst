@@ -336,7 +336,8 @@ Management command
 
 List of options
 ~~~~~~~~~~~~~~~
-::
+
+To display saved options from command line::
 
     $ python manage.py options
 
@@ -380,6 +381,8 @@ paginated::
     +------+------------+---------------------+---------------------+------------+----------+
     Page 1 of 2
 
+
+To display options data uses `prettytable`_.
 
 Editing
 ~~~~~~~
@@ -441,4 +444,5 @@ From future
 .. |demo_image_page| image:: docs/admin_options_page.png
     :width: 800 px
 .. django-picklefield: https://www.github.com/shrubberysoft/django-picklefield
+.. prettytable: http://code.google.com/p/prettytable/
 

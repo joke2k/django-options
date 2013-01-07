@@ -1,0 +1,21 @@
+{% extends 'admin/object_history.html' %}
+{% load i18n %}
+{% load url from future %}
+
+{% block breadcrumbs %}
+    <div id="options-pages-navbar" class="breadcrumbs">
+        <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+        {% for option_page in current_page.parents reversed %}
+            &rsaquo; <a href="{% url 'admin:options-page' page_code=option_page.get_code %}">
+              {{ option_page.title }}</a>
+        {% endfor %}
+        &rsaquo; <a href="{% url 'admin:options-page' page_code=current_page.get_code %}">
+          {{ current_page.title|default_if_none:current_page.code|title }}</a>
+
+        {% if is_full_history %}
+          &rsaquo; {% trans 'Full History' %} (<a href=".">{% trans 'normal' %}</a>)
+        {% else %}
+          &rsaquo; {% trans 'History' %} {% if current_page.children %}(<a href=".?full=1">{% trans 'full' %}</a>){% endif %}
+        {% endif %}
+    </div>
+{% endblock %}

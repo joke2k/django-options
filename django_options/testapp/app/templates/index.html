@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Django Options - Test application </title>
+</head>
+<body>
+
+  <h1>Django-Options package</h1>
+
+  <h2>Test option tags:</h2>
+
+  <pre>
+      # load template tags and filters
+      {% templatetag openblock %} load options {% templatetag closeblock %}{% load options %}
+
+      # used as tag ( site_welcome may be not exists )
+      {% templatetag openblock %} option 'site_welcome' {% templatetag closeblock %}
+      > {% option 'site_welcome' %}
+
+      # used as tag with default
+      {% templatetag openblock %} option 'site_welcome' 'Hello world!' {% templatetag closeblock %}
+      > {% option 'site_welcome' 'Hello world!' %}
+
+      # used as tag with assignment
+      {% templatetag openblock %} option 'site_welcome' 'Hello world!' as my_welcome {% templatetag closeblock %}
+      {% templatetag openvariable %} my_welcome {% templatetag closevariable %}
+      > {% option 'site_welcome' 'Hello world!' as my_welcome %}{{ my_welcome }}
+
+
+      # used as filter
+      {% templatetag openvariable %} 'site_welcome'|option:'Hello world!' {% templatetag closevariable %}
+      > {{ 'site_welcome'|option:'Hello world!' }}
+
+      # the name of the option may be a variable containing a string
+      {% templatetag openvariable %} string_value|option:'Hello world!' {% templatetag closevariable %}
+      > {{ 'site_welcome'|option:'Hello world!' }}
+
+      # used as filter in if block tag
+      {% templatetag openblock %} if 'site_welcome'|option {% templatetag closeblock %}
+      {% templatetag openvariable %} 'site_welcome'|option {% templatetag closevariable %}
+      {% templatetag openblock %} else {% templatetag closeblock %}
+      {% templatetag openvariable %} 'Default welcome!' {% templatetag closevariable %}
+      {% templatetag openblock %} endif {% templatetag closeblock %}
+      {% if 'site_welcome'|option %}> {{ 'site_welcome'|option }}{% else %}> Default welcome!{% endif %}
+
+      # optional filter
+      {% templatetag openvariable %} not_existent_value|or_option:'site_welcome' {% templatetag closevariable %}
+      > {{ not_existent_value|option:'site_welcome' }}
+
+      # default value for unknown option name is None
+      {% templatetag openvariable %} not_existent_value|or_option:'site_welcome'|default_if_none:'Hello world!' {% templatetag closevariable %}
+      > {{ not_existent_value|or_option:'site_welcome'|default_if_none:'Hello world!' }}
+
+      # useful for default values, <b>or_option</b> is ignored when filtered value exists
+      {% templatetag openblock %} with existent_value='42' {% templatetag closeblock %}
+      {% templatetag openvariable %} existent_value|or_option:'site_welcome'|default_if_none:'0' {% templatetag closevariable %}
+      {% templatetag openblock %} endwith {% templatetag closeblock %}
+      {% with existent_value='42' %}> {{ existent_value|or_option:'site_value'|default_if_none:'0' }}{% endwith %}
+
+      # nice uses with iterators
+      {% templatetag openblock %} for element in 'site_welcome'|option:'my-iterable-welcome-value' {% templatetag closevariable %}
+      {% templatetag openvariable %} element {% templatetag closevariable %}
+      &amp;nbsp;
+      {% templatetag openblock %} endfor {% templatetag closeblock %}
+      > {% for element in 'site_welcome'|option:'my-iterable-welcome-value' %}{{ element }} {% endfor %}
+
+      # or_option with iterators ( suppose that <b>site_welcome</b> option is setted to 'Ciao!' )
+      {% templatetag openblock %} for element in my_empty_personal_value|or_option:'site_welcome' {% templatetag closevariable %}
+      {% templatetag openvariable %} element {% templatetag closevariable %}
+      &amp;nbsp;
+      {% templatetag openblock %} endfor {% templatetag closeblock %}
+      > {% for element in 'Ciao!'|or_option:'site_welcome' %}{{ element }} {% endfor %}
+
+  </pre>
+
+  <h2>Test of options loader</h2>
+  <pre>
+      {% templatetag openvariable %} 'options_loader_prompted_value'|option {% templatetag closevariable %}
+      > {{ 'options_loader_prompted_value'|option }}
+
+      {% templatetag openvariable %} 'method_decorator_view_prompted_value'|option {% templatetag closevariable %}
+      > {{ 'method_decorator_view_prompted_value'|option }}
+
+      {% templatetag openvariable %} 'function_view_prompted_value'|option {% templatetag closevariable %}
+      > {{ 'function_view_prompted_value'|option }}
+
+      {% templatetag openvariable %} 'decorated_function_view_prompted_value'|option {% templatetag closevariable %}
+      > {{ 'decorated_function_view_prompted_value'|option }}
+  </pre>
+
+
+
+
+</body>
+</html>
