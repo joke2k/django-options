@@ -438,11 +438,10 @@ From future
 * Change autoload, expired_at and site_id from command line
 * Inline option form editor
 
-
-.. |demo_image_home| image:: docs/admin_home.png
+.. |demo_image_home| image:: https://raw.github.com/joke2k/django-options/master/docs/admin_home.png
     :width: 800 px
-.. |demo_image_page| image:: docs/admin_options_page.png
+.. |demo_image_page| image:: https://raw.github.com/joke2k/django-options/master/docs/admin_options_page.png
     :width: 800 px
-.. django-picklefield: https://www.github.com/shrubberysoft/django-picklefield
-.. prettytable: http://code.google.com/p/prettytable/
+.. _django-picklefield: https://www.github.com/shrubberysoft/django-picklefield
+.. _prettytable: http://code.google.com/p/prettytable/
 
