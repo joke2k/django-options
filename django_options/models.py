@@ -8,7 +8,8 @@ from .managers import OptionManager
 
 class Option(models.Model):
 
-    site = models.ForeignKey(Site, related_name='options')
+    site = models.ForeignKey(Site, related_name='options',
+                             verbose_name=_('Site'))
 
     key = models.CharField(max_length=255,
                            verbose_name=_('Key'))
@@ -32,4 +33,4 @@ class Option(models.Model):
     class Meta:
         unique_together = ('site', 'key',)
         verbose_name = _('Option')
-        verbose_name_plur = _('Options')
+        verbose_name_plural = _('Options')
