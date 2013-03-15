@@ -31,7 +31,7 @@ class Option(models.Model):
     on_site = objects
 
     def __unicode__(self):
-        return u"%s:%s" % (self.site.name[:10], self.key[:10])
+        return u"{0.site.name:s}:{0.key:s}".format(self)
 
     class Meta:
         unique_together = ('site', 'key',)
