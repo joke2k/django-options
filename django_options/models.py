@@ -30,6 +30,9 @@ class Option(models.Model):
     all = models.Manager()
     on_site = objects
 
+    def __unicode__(self):
+        return u"%s:%s" % (self.site.name[:10], self.key[:10])
+
     class Meta:
         unique_together = ('site', 'key',)
         verbose_name = _('Option')
