@@ -5,21 +5,33 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-15 16:33+0800\n"
-"PO-Revision-Date: 2013-03-15 16:34+0800\n"
+"POT-Creation-Date: 2013-03-15 17:00+0800\n"
+"PO-Revision-Date: 2013-03-15 17:06+0800\n"
 "Last-Translator: Meng Zhuo <mengzhuo1203@gmail.com>\n"
-"Language-Team: zh_CN<LL@li.org>\n"
+"Language-Team: zh_CN <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: admin.py:82
+#: admin.py:40
+msgid "Show Options"
+msgstr "显示选项"
+
+#: admin.py:43
+msgid "Show site options url"
+msgstr "站点选项URL"
+
+#: admin.py:58
+msgid "Site name"
+msgstr "站点名称"
+
+#: admin.py:85
 msgid "Autoload selected options"
 msgstr "自动加载已选选项"
 
-#: admin.py:85
+#: admin.py:88
 msgid "Not Autoload selected options"
 msgstr "不自动加载已选选项"
 
