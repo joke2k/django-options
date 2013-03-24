@@ -2,9 +2,11 @@
 from django.db import models
 from django.utils.translation import ugettext as _
 from django.contrib.sites.models import Site
+from django.conf import settings
 from picklefield import PickledObjectField
 from .managers import OptionManager
 
+VALUE_EDITABLE = getattr(settings, 'OPTION_VALUE_EDITABLE', False)
 
 class Option(models.Model):
 
@@ -13,8 +15,11 @@ class Option(models.Model):
 
     key = models.CharField(max_length=255,
                            verbose_name=_('Key'))
+
     value = PickledObjectField(null=True, default=True,
-                               verbose_name=_('Value'))
+                               verbose_name=_('Value'), 
+                               editable=VALUE_EDITABLE)
+
     autoload = models.BooleanField(default=False,
                                    verbose_name=_('Autoload'))
 
