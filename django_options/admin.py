@@ -1,6 +1,7 @@
-
+# -*- coding: utf-8 -*-s
 from django.contrib import admin
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
 
 from .options import OptionsPageCollector, BaseOptionsPage
 from .models import Option
@@ -34,9 +35,14 @@ if getattr(settings, 'OPTIONS_CONTRIB_SITE', True) and 'django.contrib.sites' in
 
     class ExtendedSiteAdmin(SiteAdmin):
         def show_site_options_url(self, obj):
-            url = reverse('admin:%s_%s_changelist' %(Option._meta.app_label,  Option._meta.module_name) )
-            return '<a href="%s?site__name=%s">show options (%d)</a>' % (url, obj.name, Option.all.filter(site__id__exact=obj.pk).count())
+            url = reverse(
+                    'admin:{0.app_label:s}_{0.module_name:s}_changelist'.format(
+                                                                      Option._meta))
+            return '<a href="%s?site__name=%s">%s(%d)</a>' % (url,
+                    obj.name, _('Show Options'),
+                    Option.all.filter(site__id__exact=obj.pk).count())
         show_site_options_url.allow_tags = True
+        show_site_options_url.short_description = _('Show site options url')
 
         list_display = SiteAdmin.list_display + ('show_site_options_url',)
 
@@ -51,7 +57,7 @@ class OptionAdmin(admin.ModelAdmin):
 
     def site_name(self, obj):
         return obj.site.name
-    site_name.short_description = 'Site name'
+    site_name.short_description = _('Site name')
 
     list_display = ('key', 'value', 'site_name', 'autoload', 'created_at', 'updated_at', 'expires_at')
     list_filter = ('site__name', 'autoload')
@@ -76,7 +82,6 @@ class OptionAdmin(admin.ModelAdmin):
 ####################################
 # Add actions to OptionAdmin class #
 ####################################
-from django.utils.translation import ugettext_lazy as _
 
 def make_autoload_on(modeladmin, request, queryset): queryset.update(autoload=True)
 make_autoload_on.short_description = _("Autoload selected options")

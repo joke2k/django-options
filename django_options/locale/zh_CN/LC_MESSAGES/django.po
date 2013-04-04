@@ -1,0 +1,171 @@
+# This file is distributed under the same license as the Django Option package.
+# Meng Zhou <mengzhuo1203@gmail.com>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 0.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-03-15 17:00+0800\n"
+"PO-Revision-Date: 2013-03-15 17:08+0800\n"
+"Last-Translator: Meng Zhuo <mengzhuo1203@gmail.com>\n"
+"Language-Team: zh_CN <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: admin.py:40
+msgid "Show Options"
+msgstr "显示选项"
+
+#: admin.py:43
+msgid "Show site options url"
+msgstr "站点选项URL"
+
+#: admin.py:58
+msgid "Site name"
+msgstr "站点名称"
+
+#: admin.py:85
+msgid "Autoload selected options"
+msgstr "自动加载已选选项"
+
+#: admin.py:88
+msgid "Not Autoload selected options"
+msgstr "不自动加载已选选项"
+
+#: models.py:12
+msgid "Site"
+msgstr "站点"
+
+#: models.py:15
+msgid "Key"
+msgstr "键"
+
+#: models.py:17
+msgid "Value"
+msgstr "值"
+
+#: models.py:19
+msgid "Autoload"
+msgstr "自动加载"
+
+#: models.py:22
+msgid "Update at"
+msgstr "更新时间"
+
+#: models.py:24
+msgid "Create at"
+msgstr "创建时间"
+
+#: models.py:26
+msgid "Expires at"
+msgstr "失效时间"
+
+#: models.py:35
+msgid "Option"
+msgstr "选项"
+
+#: models.py:36
+#: templates/admin/options_page.html:75
+#: templates/admin/sites/change_form.html:7
+msgid "Options"
+msgstr "选项"
+
+#: options.py:95
+msgid "Options changes history"
+msgstr "选项更改历史"
+
+#: options.py:182
+#, python-format
+msgid "%(elements)s and %(last)s"
+msgstr "%(elements)s 和 %(last)s"
+
+#: options.py:188
+#, python-format
+msgid "%(element_list)s is added."
+msgstr "%(element_list)s 已添加"
+
+#: options.py:191
+#, python-format
+msgid "%(element_list)s is edited."
+msgstr "%(element_list)s已编辑."
+
+#: options.py:194
+#, python-format
+msgid "%(element_list)s is deleted."
+msgstr "%(element_list)s 已删除."
+
+#: options.py:196
+#, python-format
+msgid "%(option_page)s: %(actions)s"
+msgstr "%(option_page)s: %(actions)s"
+
+#: options.py:249
+msgid "Not option changes"
+msgstr "没有选项变化"
+
+#: options.py:276
+msgid "Check form errors"
+msgstr "检查表单错误"
+
+#: templates/admin/base_site.html:8
+msgid "Django site admin"
+msgstr "Django站点管理"
+
+#: templates/admin/base_site.html:17
+msgid "Django administration"
+msgstr "Django管理"
+
+#: templates/admin/base_site.html:25
+msgid "Options pages"
+msgstr "选项页面"
+
+#: templates/admin/options_page.html:26
+#: templates/admin/options_page_history.html:7
+msgid "Home"
+msgstr "主页"
+
+#: templates/admin/options_page.html:50
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "请修正以下错误"
+
+#: templates/admin/options_page.html:63
+msgid "Save"
+msgstr "保存"
+
+#: templates/admin/options_page.html:74
+#: templates/admin/options_page_history.html:18
+msgid "History"
+msgstr "历史"
+
+#: templates/admin/options_page.html:81
+msgid "Admin pages"
+msgstr "管理页面"
+
+#: templates/admin/options_page.html:100
+msgid "Recent Actions"
+msgstr "最新活动"
+
+#: templates/admin/options_page.html:103
+msgid "None available"
+msgstr "不可用"
+
+#: templates/admin/options_page.html:117
+msgid "Unknown content"
+msgstr "未知内容"
+
+#: templates/admin/options_page_history.html:16
+msgid "Full History"
+msgstr "全部历史"
+
+#: templates/admin/options_page_history.html:16
+msgid "normal"
+msgstr "正常"
+
+#: templates/admin/options_page_history.html:18
+msgid "full"
+msgstr "满"
+
