@@ -18,12 +18,14 @@ class OptionManager(CurrentSiteManager):
         self.__is_validated = False
         super(OptionManager, self).__init__(**kwargs)
 
-    def get_query_set(self):
+    def get_queryset(self):
         # monkey patch for CurrentSiteManage
         # that allows to change site_id
         if not self.site_id:
             return super(OptionManager, self).get_query_set()
         return super(CurrentSiteManager, self).get_query_set().filter(**{self.__field_name + '__id__exact': self.site_id})
+
+    get_query_set = get_queryset
 
     def clear(self):
         self.all_options = None
