@@ -3,6 +3,7 @@ Django-options
 
 A easy way to manage Site options in your django applications.
 
+|pypi| |unix_build| |windows_build| |coverage| |downloads| |license|
 
 Overview
 --------
@@ -450,3 +451,26 @@ From future
 .. _django-picklefield: https://www.github.com/shrubberysoft/django-picklefield
 .. _prettytable: http://code.google.com/p/prettytable/
 
+.. |pypi| image:: https://img.shields.io/pypi/v/django-options.svg?style=flat-square&label=version
+    :target: https://pypi.python.org/pypi/django-options
+    :alt: Latest version released on PyPi
+
+.. |coverage| image:: https://img.shields.io/coveralls/joke2k/django-options/master.svg?style=flat-square
+    :target: https://coveralls.io/r/joke2k/django-options?branch=master
+    :alt: Test coverage
+
+.. |unix_build| image:: https://img.shields.io/travis/joke2k/django-options/master.svg?style=flat-square&label=unix%20bui$
+    :target: http://travis-ci.org/joke2k/django-options
+    :alt: Build status of the master branch on Mac/Linux
+
+.. |windows_build|  image:: https://img.shields.io/appveyor/ci/joke2k/django-options.svg?style=flat-square&label=windows%$
+    :target: https://ci.appveyor.com/project/joke2k/django-options
+    :alt: Build status of the master branch on Windows
+
+.. |downloads| image:: https://img.shields.io/pypi/dm/django-options.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/django-options
+    :alt: Monthly downloads
+
+.. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
+    :target: https://raw.githubusercontent.com/joke2k/django-options/master/LICENSE.txt
+    :alt: Package license
