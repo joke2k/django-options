@@ -459,11 +459,11 @@ From future
     :target: https://coveralls.io/r/joke2k/django-options?branch=master
     :alt: Test coverage
 
-.. |unix_build| image:: https://img.shields.io/travis/joke2k/django-options/master.svg?style=flat-square&label=unix%20bui$
+.. |unix_build| image:: https://img.shields.io/travis/joke2k/django-options/master.svg?style=flat-square&label=unix%20build
     :target: http://travis-ci.org/joke2k/django-options
     :alt: Build status of the master branch on Mac/Linux
 
-.. |windows_build|  image:: https://img.shields.io/appveyor/ci/joke2k/django-options.svg?style=flat-square&label=windows%$
+.. |windows_build|  image:: https://img.shields.io/appveyor/ci/joke2k/django-options.svg?style=flat-square&label=windows%20build
     :target: https://ci.appveyor.com/project/joke2k/django-options
     :alt: Build status of the master branch on Windows
 
@@ -474,3 +474,5 @@ From future
 .. |license| image:: https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square
     :target: https://raw.githubusercontent.com/joke2k/django-options/master/LICENSE.txt
     :alt: Package license
+
+.. _LICENSE: https://github.com/joke2k/django-options/blob/master/LICENSE.txt
