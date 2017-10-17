@@ -1,4 +1,4 @@
 django==1.11.6
 django-picklefield==1.0.0
 fake-factory>=0.2
-django-faker
+django-faker==0.2
