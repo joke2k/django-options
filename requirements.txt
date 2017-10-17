@@ -1,2 +1,2 @@
 django==1.11.6
-django-picklefield
+django-picklefield==1.0.0
